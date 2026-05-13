@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Search, SlidersHorizontal, Plus, Trash2, TrendingUp, TrendingDown, Coins, MoreHorizontal, Banknote } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Search, SlidersHorizontal, Plus, Trash2, TrendingUp, TrendingDown, Coins, MoreHorizontal, Banknote, Download } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -19,8 +19,7 @@ import { formatCurrency } from "@/lib/mockData";
 import { useAccounts, useTransactions, useCreateTransaction, useUpdateTransaction, useDeleteTransaction } from "@/hooks/useFinance";
 import { toast } from "sonner";
 import { useSearchParams } from "react-router-dom";
-
-const categories = ["Salary", "Rent", "Food", "Food & Dining", "Utilities", "Shopping", "Freelance", "Entertainment", "Groceries", "Transport", "Other"];
+import api from "@/lib/api/client";
 
 const formatDate = (dateStr: string) => {
   const date = new Date(dateStr);
@@ -35,6 +34,7 @@ export default function Transactions() {
   const [searchParams] = useSearchParams();
   const accountIdFilter = searchParams.get("accountId");
   const [search, setSearch] = useState("");
+  const [categories, setCategories] = useState<string[]>([]);
   const { data: transactions = [], isLoading: txLoading } = useTransactions({ accountId: accountIdFilter || undefined });
   const { data: accounts = [] } = useAccounts();
   const createTransaction = useCreateTransaction();
@@ -44,6 +44,55 @@ export default function Transactions() {
   const [open, setOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [form, setForm] = useState({ description: "", amount: "", category: "Other", type: "expense" as "income" | "expense", date: new Date().toISOString().slice(0, 10), accountId: "" });
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
+
+  // Fetch categories from API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get("/categories");
+        setCategories(response.data);
+      } catch (error) {
+        toast.error("Failed to load categories");
+        // Fallback to default categories
+        setCategories(["Salary", "Rent", "Food", "Food & Dining", "Utilities", "Shopping", "Freelance", "Entertainment", "Groceries", "Transport", "Other"]);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  // CSV Export function
+  const exportToCSV = () => {
+    if (transactions.length === 0) {
+      toast.error("No transactions to export");
+      return;
+    }
+
+    const headers = ["Date", "Description", "Category", "Type", "Amount", "Account"];
+    const rows = transactions.map(t => [
+      new Date(t.date).toLocaleDateString('en-GB'),
+      t.description,
+      t.category,
+      t.type,
+      formatCurrency(t.amount),
+      accounts.find(a => a.id === t.accountId)?.name || "-"
+    ]);
+
+    const csv = [
+      headers.join(","),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(","))
+    ].join("\n");
+
+    const blob = new Blob([csv], { type: "text/csv" });
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `transactions-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+    toast.success("Transactions exported successfully");
+  };
 
   const filtered = transactions.filter(
     (t) =>
@@ -114,9 +163,14 @@ export default function Transactions() {
           <h1 className="text-2xl font-bold text-foreground">Transactions</h1>
           <p className="text-sm text-muted-foreground">Manage and track your detailed spending history.</p>
         </div>
-        <Button className="gap-2" onClick={() => setOpen(true)}>
-          <Plus className="h-4 w-4" /> Add Transaction
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="outline" className="gap-2" onClick={exportToCSV}>
+            <Download className="h-4 w-4" /> Export CSV
+          </Button>
+          <Button className="gap-2" onClick={() => setOpen(true)}>
+            <Plus className="h-4 w-4" /> Add Transaction
+          </Button>
+        </div>
       </div>
 
       <div className="mb-4 flex items-center gap-3">
@@ -154,7 +208,12 @@ export default function Transactions() {
                   return { ...t, runningBalance: currentBal };
                 }).reverse();
 
-                return txWithBalance.map((t, index) => {
+                // Calculate pagination
+                const totalPages = Math.ceil(txWithBalance.length / itemsPerPage);
+                const startIndex = (currentPage - 1) * itemsPerPage;
+                const paginatedTx = txWithBalance.slice(startIndex, startIndex + itemsPerPage);
+
+                return paginatedTx.map((t, index) => {
                   return (
                     <TableRow key={t.id} className="hover:bg-muted/20 border-b">
                       <TableCell className="text-muted-foreground whitespace-nowrap">
@@ -214,6 +273,57 @@ export default function Transactions() {
             </TableBody>
           </Table>
         </CardContent>
+        
+        {/* Pagination Controls */}
+        {filtered.length > 0 && (
+          <div className="flex items-center justify-between border-t bg-muted/30 px-4 py-3">
+            <div className="text-sm text-muted-foreground">
+              Showing {Math.min((currentPage - 1) * itemsPerPage + 1, filtered.length)} to{" "}
+              {Math.min(currentPage * itemsPerPage, filtered.length)} of {filtered.length} transactions
+            </div>
+            <div className="flex gap-2">
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                disabled={currentPage === 1}
+              >
+                Previous
+              </Button>
+              <div className="flex items-center gap-1">
+                {Array.from(
+                  { length: Math.ceil(filtered.length / itemsPerPage) },
+                  (_, i) => i + 1
+                ).map((page) => (
+                  <Button
+                    key={page}
+                    variant={currentPage === page ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setCurrentPage(page)}
+                    className="w-8 h-8 p-0"
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() =>
+                  setCurrentPage(
+                    Math.min(
+                      Math.ceil(filtered.length / itemsPerPage),
+                      currentPage + 1
+                    )
+                  )
+                }
+                disabled={currentPage === Math.ceil(filtered.length / itemsPerPage)}
+              >
+                Next
+              </Button>
+            </div>
+          </div>
+        )}
       </Card>
 
       {/* Transaction Dialog */}

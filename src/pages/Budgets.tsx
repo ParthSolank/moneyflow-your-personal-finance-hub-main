@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Plus, PiggyBank, Target, ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Plus, PiggyBank, Target, ArrowUpRight, AlertCircle } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Progress } from "@/components/ui/progress";
@@ -16,8 +16,7 @@ import { useBudgets, useUpsertBudget, useSpendingByCategory } from "@/hooks/useF
 import { formatCurrency } from "@/lib/mockData";
 import { toast } from "sonner";
 import { Sparkles } from "lucide-react";
-
-const categories = ["Salary", "Rent", "Food & Dining", "Utilities", "Shopping", "Freelance", "Entertainment", "Groceries", "Transport", "Other"];
+import api from "@/lib/api/client";
 
 export default function Budgets() {
   const currentMonth = new Date().getMonth() + 1;
@@ -28,7 +27,40 @@ export default function Budgets() {
   const upsertBudget = useUpsertBudget();
 
   const [open, setOpen] = useState(false);
+  const [categories, setCategories] = useState<string[]>([]);
   const [form, setForm] = useState({ category: "Other", amount: "" });
+
+  // Fetch categories from API
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await api.get("/categories");
+        setCategories(response.data);
+      } catch (error) {
+        toast.error("Failed to load categories");
+        setCategories(["Salary", "Rent", "Food & Dining", "Utilities", "Shopping", "Freelance", "Entertainment", "Groceries", "Transport", "Other"]);
+      }
+    };
+    fetchCategories();
+  }, []);
+
+  // Check for budget alerts when budgets or spending changes
+  useEffect(() => {
+    budgets.forEach(budget => {
+      const percentage = budget.limit > 0 ? (budget.actual / budget.limit) * 100 : 0;
+      if (percentage >= 100) {
+        // Budget exceeded
+        toast.error(`⚠️ Budget exceeded for ${budget.category}: ${formatCurrency(budget.actual)} of ${formatCurrency(budget.limit)}`, {
+          duration: 5000,
+        });
+      } else if (percentage >= 80) {
+        // Warning: approaching limit
+        toast.warning(`⚠️ ${budget.category} budget at ${Math.round(percentage)}%: ${formatCurrency(budget.actual)} of ${formatCurrency(budget.limit)}`, {
+          duration: 5000,
+        });
+      }
+    });
+  }, [budgets]);
 
   const handleUpsert = async () => {
     if (!form.amount) return;
@@ -113,6 +145,12 @@ export default function Budgets() {
                       {isOver ? `Over by ${formatCurrency(budget.actual - budget.limit)}` : `Remaining: ${formatCurrency(budget.limit - budget.actual)}`}
                     </span>
                   </div>
+                  {percentage >= 80 && (
+                    <div className={`flex items-center gap-2 rounded px-2 py-1.5 text-xs font-medium ${isOver ? "bg-destructive/10 text-destructive" : "bg-yellow-50 text-yellow-700"}`}>
+                      <AlertCircle className="h-3 w-3" />
+                      {isOver ? "Budget exceeded!" : "Approaching budget limit"}
+                    </div>
+                  )}
                 </div>
               </CardContent>
             </Card>

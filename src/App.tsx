@@ -13,6 +13,8 @@ import SettingsPage from "./pages/SettingsPage";
 import LoginPage from "./pages/Login";
 import RegisterPage from "./pages/Register";
 import Budgets from "./pages/Budgets";
+import LedgerDetails from "./pages/LedgerDetails";
+import AdminDashboard from "./pages/AdminDashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,8 +36,10 @@ const App = () => (
               <Route path="/transactions" element={<Transactions />} />
               <Route path="/budgets" element={<Budgets />} />
               <Route path="/ledgers" element={<Ledgers />} />
+              <Route path="/ledgers/:id" element={<LedgerDetails />} />
               <Route path="/import" element={<ImportStatement />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/admin" element={<AdminDashboard />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />

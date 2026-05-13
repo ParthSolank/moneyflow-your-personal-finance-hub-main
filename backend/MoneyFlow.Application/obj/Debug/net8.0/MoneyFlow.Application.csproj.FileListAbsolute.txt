@@ -1,0 +1,15 @@
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Application.deps.json
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Application.dll
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Application.pdb
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Domain.dll
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Domain.pdb
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.csproj.AssemblyReference.cache
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.AssemblyInfoInputs.cache
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.AssemblyInfo.cs
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.csproj.CoreCompileInputs.cache
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlo.B4AAEFB5.Up2Date
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.dll
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\refint\MoneyFlow.Application.dll
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.pdb
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\ref\MoneyFlow.Application.dll

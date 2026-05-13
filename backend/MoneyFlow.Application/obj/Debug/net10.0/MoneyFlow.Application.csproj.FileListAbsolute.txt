@@ -1,0 +1,5 @@
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net10.0\MoneyFlow.Application.csproj.AssemblyReference.cache
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net10.0\MoneyFlow.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net10.0\MoneyFlow.Application.AssemblyInfoInputs.cache
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net10.0\MoneyFlow.Application.AssemblyInfo.cs
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net10.0\MoneyFlow.Application.csproj.CoreCompileInputs.cache

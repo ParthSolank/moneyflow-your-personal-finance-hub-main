@@ -7,6 +7,7 @@ export interface AuthResponse {
   refreshToken: string;
   email: string;
   fullName: string;
+  role: string;
 }
 
 export const authService = {

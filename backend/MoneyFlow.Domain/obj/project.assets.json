@@ -565,11 +565,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Domain\\MoneyFlow.Domain.csproj",
+      "projectUniqueName": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Domain\\MoneyFlow.Domain.csproj",
       "projectName": "MoneyFlow.Domain",
-      "projectPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Domain\\MoneyFlow.Domain.csproj",
+      "projectPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Domain\\MoneyFlow.Domain.csproj",
       "packagesPath": "C:\\Users\\Parth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Domain\\obj\\",
+      "outputPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Domain\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

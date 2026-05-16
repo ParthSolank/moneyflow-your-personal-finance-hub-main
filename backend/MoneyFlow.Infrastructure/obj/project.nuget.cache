@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BJd7JdOcwJI=",
+  "dgSpecHash": "pTt79hXbZ4g=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj",
+  "projectFilePath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Parth\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Parth\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",

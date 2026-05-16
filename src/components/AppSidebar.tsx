@@ -43,10 +43,10 @@ export default function AppSidebar() {
     <aside className="fixed left-0 top-0 z-40 flex h-screen w-60 flex-col border-r border-border bg-card">
       {/* Logo */}
       <div className="flex items-center gap-2.5 px-5 py-5 pb-2">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
-          <Wallet className="h-4 w-4 text-primary-foreground" />
+        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-black overflow-hidden ring-1 ring-zinc-800 shadow-md">
+          <img src="/logo-black.png" alt="Logo" className="h-full w-full object-cover" />
         </div>
-        <span className="text-lg font-bold text-foreground">MoneyFlow Pro</span>
+        <span className="text-lg font-bold text-foreground">MoneyFlow</span>
       </div>
       <div className="px-5 pb-5">
         <p className="text-[10px] font-medium uppercase tracking-widest text-muted-foreground">
@@ -75,24 +75,28 @@ export default function AppSidebar() {
           ))}
         </ul>
 
-        <p className="mb-2 mt-6 px-2 text-xs font-semibold uppercase tracking-wider text-warning">Admin Controls</p>
-        <ul className="space-y-0.5">
-          {adminItems.map((item) => (
-            <li key={item.path}>
-              <Link
-                to={item.path}
-                className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
-                  isActive(item.path)
-                    ? "bg-primary/10 text-primary"
-                    : "text-muted-foreground hover:bg-accent hover:text-foreground"
-                }`}
-              >
-                <item.icon className="h-4 w-4 text-expense" />
-                {item.label}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        {user?.role === "admin" && (
+          <>
+            <p className="mb-2 mt-6 px-2 text-xs font-semibold uppercase tracking-wider text-warning">Admin Controls</p>
+            <ul className="space-y-0.5">
+              {adminItems.map((item) => (
+                <li key={item.path}>
+                  <Link
+                    to={item.path}
+                    className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
+                      isActive(item.path)
+                        ? "bg-primary/10 text-primary"
+                        : "text-muted-foreground hover:bg-accent hover:text-foreground"
+                    }`}
+                  >
+                    <item.icon className="h-4 w-4 text-expense" />
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </nav>
 
       {/* Bottom */}

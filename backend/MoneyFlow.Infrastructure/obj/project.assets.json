@@ -4481,11 +4481,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj",
+      "projectUniqueName": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj",
       "projectName": "MoneyFlow.Infrastructure",
-      "projectPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj",
+      "projectPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj",
       "packagesPath": "C:\\Users\\Parth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\obj\\",
+      "outputPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -4507,8 +4507,8 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj": {
-              "projectPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj"
+            "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj": {
+              "projectPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj"
             }
           }
         }

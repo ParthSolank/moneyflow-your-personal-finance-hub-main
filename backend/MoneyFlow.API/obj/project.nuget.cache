@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "AxjvdeqXmok=",
+  "dgSpecHash": "k7ydk56RifU=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\MoneyFlow.API.csproj",
+  "projectFilePath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\MoneyFlow.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Parth\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\Parth\\.nuget\\packages\\azure.core\\1.35.0\\azure.core.1.35.0.nupkg.sha512",
     "C:\\Users\\Parth\\.nuget\\packages\\azure.identity\\1.10.3\\azure.identity.1.10.3.nupkg.sha512",
+    "C:\\Users\\Parth\\.nuget\\packages\\dotenv.net\\4.0.2\\dotenv.net.4.0.2.nupkg.sha512",
     "C:\\Users\\Parth\\.nuget\\packages\\fluentvalidation\\11.9.0\\fluentvalidation.11.9.0.nupkg.sha512",
     "C:\\Users\\Parth\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.9.0\\fluentvalidation.dependencyinjectionextensions.11.9.0.nupkg.sha512",
     "C:\\Users\\Parth\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",

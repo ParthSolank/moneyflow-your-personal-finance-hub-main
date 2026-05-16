@@ -1,6 +1,10 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
 import { AuthResponse, authService } from "@/lib/api/authService";
 
+/**
+ * AuthContext Interface
+ * Defines the shape of the global authentication state.
+ */
 interface AuthContextType {
   user: AuthResponse | null;
   isLoading: boolean;
@@ -11,6 +15,14 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+/**
+ * AuthProvider Component
+ * 
+ * Manages the global authentication lifecycle:
+ * - Persists tokens and user info in localStorage.
+ * - Handles login, registration, and logout API calls.
+ * - Provides user context to the entire application.
+ */
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<AuthResponse | null>(null);
   const [isLoading, setIsLoading] = useState(true);

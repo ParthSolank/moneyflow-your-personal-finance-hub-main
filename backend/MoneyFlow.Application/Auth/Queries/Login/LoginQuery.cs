@@ -29,7 +29,15 @@ namespace MoneyFlow.Application.Auth.Queries.Login
                 throw new Exception("Invalid email or password");
             }
 
-            var claims = new List<Claim> { new Claim(ClaimTypes.Email, user.Email!) };
+            var roles = await _userManager.GetRolesAsync(user);
+            var role = roles.FirstOrDefault() ?? "user";
+
+            var claims = new List<Claim> 
+            { 
+                new Claim(ClaimTypes.Email, user.Email!),
+                new Claim(ClaimTypes.Role, role)
+            };
+
             var token = _tokenService.GenerateAccessToken(user, claims);
             var refreshToken = _tokenService.GenerateRefreshToken();
 
@@ -37,7 +45,7 @@ namespace MoneyFlow.Application.Auth.Queries.Login
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
             await _userManager.UpdateAsync(user);
 
-            return new AuthResponse(token, refreshToken, user.Email!, user.FullName!);
+            return new AuthResponse(token, refreshToken, user.Email!, user.FullName!, role);
         }
     }
 }

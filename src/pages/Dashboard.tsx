@@ -43,15 +43,25 @@ import {
 
 const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8", "#82ca9d"];
 
+/**
+ * Dashboard Component
+ * 
+ * The main landing page for authenticated users.
+ * Displays:
+ * - High-level financial summary (Total balance, Income, Expenses).
+ * - Account distribution and recent transactions.
+ * - Quick actions for managing finance.
+ */
 export default function Dashboard() {
   const currentMonth = new Date().getMonth() + 1;
   const currentYear = new Date().getFullYear();
 
+  // Fetch financial data using specialized hooks
   const { data: summary } = useDashboardSummary();
   const { data: cashflow = [] } = useCashflow();
   const { data: spending = [] } = useSpendingByCategory(currentMonth, currentYear);
-  const { data: transactions = [] } = useTransactions();
-  const { data: accounts = [] } = useAccounts();
+  const { data: transactions = [], isLoading: transactionsLoading } = useTransactions({ accountId: undefined });
+  const { data: accounts = [], isLoading: accountsLoading } = useAccounts();
 
   const primaryAccounts = accounts.filter((a) => a.type === "bank");
 

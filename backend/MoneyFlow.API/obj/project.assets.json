@@ -62,6 +62,15 @@
           }
         }
       },
+      "dotenv.net/4.0.2": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.1/dotenv.net.dll": {}
+        }
+      },
       "FluentValidation/11.9.0": {
         "type": "package",
         "compile": {
@@ -2170,6 +2179,20 @@
         "azureicon.png",
         "lib/netstandard2.0/Azure.Identity.dll",
         "lib/netstandard2.0/Azure.Identity.xml"
+      ]
+    },
+    "dotenv.net/4.0.2": {
+      "sha512": "6xpiqKV1aKWIkSSDP7J+60GEKUitiDweD4yOsn9giCMysSfCghJQuYfXQwbzgdmt0Bsv/2ajUCbjvemGavqItA==",
+      "type": "package",
+      "path": "dotenv.net/4.0.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "dotenv.net.4.0.2.nupkg.sha512",
+        "dotenv.net.nuspec",
+        "lib/netstandard2.0/dotenv.net.dll",
+        "lib/netstandard2.1/dotenv.net.dll"
       ]
     },
     "FluentValidation/11.9.0": {
@@ -5533,7 +5556,8 @@
       "Serilog.AspNetCore >= 8.0.0",
       "Serilog.Sinks.Console >= 5.0.1",
       "Serilog.Sinks.File >= 5.0.0",
-      "Swashbuckle.AspNetCore >= 6.5.0"
+      "Swashbuckle.AspNetCore >= 6.5.0",
+      "dotenv.net >= 4.0.2"
     ]
   },
   "packageFolders": {
@@ -5543,11 +5567,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\MoneyFlow.API.csproj",
+      "projectUniqueName": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\MoneyFlow.API.csproj",
       "projectName": "MoneyFlow.API",
-      "projectPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\MoneyFlow.API.csproj",
+      "projectPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\MoneyFlow.API.csproj",
       "packagesPath": "C:\\Users\\Parth\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\obj\\",
+      "outputPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -5569,11 +5593,11 @@
           "framework": "net8.0",
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj": {
-              "projectPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj"
+            "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj": {
+              "projectPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Application\\MoneyFlow.Application.csproj"
             },
-            "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\Parth\\Downloads\\Compressed\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj"
+            "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj": {
+              "projectPath": "D:\\mony backup latest\\moneyflow-your-personal-finance-hub-main\\moneyflow-your-personal-finance-hub-main\\backend\\MoneyFlow.Infrastructure\\MoneyFlow.Infrastructure.csproj"
             }
           }
         }
@@ -5624,6 +5648,10 @@
           "Swashbuckle.AspNetCore": {
             "target": "Package",
             "version": "[6.5.0, )"
+          },
+          "dotenv.net": {
+            "target": "Package",
+            "version": "[4.0.2, )"
           }
         },
         "imports": [

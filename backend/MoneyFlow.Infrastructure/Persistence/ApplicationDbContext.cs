@@ -16,6 +16,7 @@ namespace MoneyFlow.Infrastructure.Persistence
         public DbSet<Account> Accounts => Set<Account>();
         public DbSet<Transaction> Transactions => Set<Transaction>();
         public DbSet<Budget> Budgets => Set<Budget>();
+        public DbSet<UserPermission> UserPermissions => Set<UserPermission>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

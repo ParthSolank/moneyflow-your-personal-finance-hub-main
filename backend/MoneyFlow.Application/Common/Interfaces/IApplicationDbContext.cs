@@ -8,6 +8,7 @@ namespace MoneyFlow.Application.Common.Interfaces
         DbSet<Account> Accounts { get; }
         DbSet<Transaction> Transactions { get; }
         DbSet<Budget> Budgets { get; }
+        DbSet<UserPermission> UserPermissions { get; }
         
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }

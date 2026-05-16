@@ -13,3 +13,20 @@ C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\mon
 C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\refint\MoneyFlow.Application.dll
 C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.pdb
 C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\ref\MoneyFlow.Application.dll
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.sourcelink.json
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Application.deps.json
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Application.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Application.pdb
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Domain.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\bin\Debug\net8.0\MoneyFlow.Domain.pdb
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.csproj.AssemblyReference.cache
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.AssemblyInfoInputs.cache
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.AssemblyInfo.cs
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.csproj.CoreCompileInputs.cache
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.sourcelink.json
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlo.B4AAEFB5.Up2Date
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\refint\MoneyFlow.Application.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\MoneyFlow.Application.pdb
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Application\obj\Debug\net8.0\ref\MoneyFlow.Application.dll

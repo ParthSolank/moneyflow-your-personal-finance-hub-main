@@ -23,9 +23,29 @@ import {
   Trash2,
 } from "lucide-react";
 import AppLayout from "@/components/AppLayout";
-import { useAccounts, useTransactions } from "@/hooks/useFinance";
+import { useAccounts, useTransactions, useUsers, useDeleteUser, useToggleUserStatus, useChangeUserRole, useUserPermissions, useUpdateUserPermissions } from "@/hooks/useFinance";
+import { Switch } from "@/components/ui/switch";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Label } from "@/components/ui/label";
 import { formatCurrency } from "@/lib/mockData";
 import { toast } from "sonner";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 interface SystemUser {
   id: string;
@@ -37,70 +57,111 @@ interface SystemUser {
   role: "admin" | "user";
 }
 
+const MODULE_CATEGORIES = [
+  { category: "Core Features", items: ["Dashboard & Analytics", "Transactions", "Ledgers & Accounts", "Categories", "Budgets"] },
+  { category: "Administration", items: ["User Management", "Access Control", "System Masters", "System Audit"] }
+];
+
 export default function AdminDashboard() {
   const { data: accounts = [] } = useAccounts();
   const { data: transactions = [] } = useTransactions({ accountId: undefined });
 
-  const [users, setUsers] = useState<SystemUser[]>([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [editingUserId, setEditingUserId] = useState<string | null>(null);
+  const { data: users = [] } = useUsers();
+  const deleteUserMutation = useDeleteUser();
+  const toggleUserStatusMutation = useToggleUserStatus();
+  const changeUserRoleMutation = useChangeUserRole();
 
-  // Mock system users data
+  const [selectedUserId, setSelectedUserId] = useState<string | null>(null);
+  const { data: userPermissionsData } = useUserPermissions(selectedUserId);
+  const userPermissions = userPermissionsData || [];
+  const updatePermissionsMutation = useUpdateUserPermissions();
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [localPermissions, setLocalPermissions] = useState<any[]>([]);
+
   useEffect(() => {
-    const mockUsers: SystemUser[] = [
-      {
-        id: "1",
-        email: "admin@moneyflow.com",
-        fullName: "Admin User",
-        createdAt: "2026-01-15",
-        lastLogin: new Date().toISOString().slice(0, 10),
-        isActive: true,
-        role: "admin",
-      },
-      {
-        id: "2",
-        email: "user@example.com",
-        fullName: "John Doe",
-        createdAt: "2026-02-20",
-        lastLogin: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-        isActive: true,
-        role: "user",
-      },
-      {
-        id: "3",
-        email: "jane@example.com",
-        fullName: "Jane Smith",
-        createdAt: "2026-03-10",
-        lastLogin: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString().slice(0, 10),
-        isActive: true,
-        role: "user",
-      },
-    ];
-    setUsers(mockUsers);
-  }, []);
+    if (!selectedUserId) {
+      if (localPermissions.length > 0) setLocalPermissions([]);
+      return;
+    }
+
+    if (userPermissionsData && userPermissionsData.length > 0) {
+      const newStr = JSON.stringify(userPermissionsData);
+      setLocalPermissions(prev => {
+        if (JSON.stringify(prev) === newStr) return prev;
+        return userPermissionsData;
+      });
+    } else if (localPermissions.length === 0) {
+      // Initialize with empty permissions for all modules ONLY if not already initialized
+      const initial = MODULE_CATEGORIES.flatMap(cat => 
+        cat.items.map(module => ({
+          module,
+          canView: false,
+          canCreate: false,
+          canEdit: false,
+          canDelete: false
+        }))
+      );
+      setLocalPermissions(initial);
+    }
+  }, [userPermissionsData, selectedUserId, localPermissions.length]);
+
+  const handlePermissionChange = (module: string, field: string, value: boolean) => {
+    setLocalPermissions(prev => {
+      const existing = prev.find(p => p.module === module);
+      if (existing) {
+        return prev.map(p => p.module === module ? { ...p, [field]: value } : p);
+      } else {
+        return [...prev, { module, canView: false, canCreate: false, canEdit: false, canDelete: false, [field]: value }];
+      }
+    });
+  };
+
+  const handleSavePermissions = async () => {
+    if (!selectedUserId) return;
+    try {
+      await updatePermissionsMutation.mutateAsync({ id: selectedUserId, permissions: localPermissions });
+      toast.success("Permissions updated successfully");
+    } catch (error) {
+      toast.error("Failed to update permissions");
+    }
+  };
 
   const filteredUsers = users.filter(
     (u) =>
       u.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      u.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+      u.fullName?.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleToggleUserStatus = (userId: string) => {
-    setUsers(
-      users.map((u) =>
-        u.id === userId ? { ...u, isActive: !u.isActive } : u
-      )
-    );
-    const user = users.find((u) => u.id === userId);
-    toast.success(
-      `${user?.fullName} has been ${user?.isActive ? "deactivated" : "activated"}`
-    );
+  const handleToggleUserStatus = async (userId: string) => {
+    try {
+      await toggleUserStatusMutation.mutateAsync(userId);
+      toast.success("User status updated successfully");
+    } catch (error) {
+      toast.error("Failed to update user status");
+    }
   };
 
-  const handleDeleteUser = (userId: string) => {
-    if (confirm("Are you sure you want to delete this user? This action cannot be undone.")) {
-      setUsers(users.filter((u) => u.id !== userId));
+  const handlePromoteUser = async (userId: string, currentRole: string) => {
+    const newRole = currentRole === "admin" ? "user" : "admin";
+    const action = currentRole === "admin" ? "demoted to user" : "promoted to admin";
+    
+    if (window.confirm(`Are you sure you want to ${currentRole === "admin" ? "demote" : "promote"} this user?`)) {
+      try {
+        await changeUserRoleMutation.mutateAsync({ id: userId, role: newRole });
+        toast.success(`User ${action} successfully`);
+      } catch (error) {
+        toast.error(`Failed to ${currentRole === "admin" ? "demote" : "promote"} user`);
+      }
+    }
+  };
+
+  const handleDeleteUser = async (userId: string) => {
+    try {
+      await deleteUserMutation.mutateAsync(userId);
       toast.success("User deleted successfully");
+    } catch (error) {
+      toast.error("Failed to delete user");
     }
   };
 
@@ -188,8 +249,9 @@ export default function AdminDashboard() {
 
       {/* Tabs for different sections */}
       <Tabs defaultValue="users" className="w-full">
-        <TabsList className="grid w-full grid-cols-3">
+        <TabsList className="grid w-full grid-cols-4">
           <TabsTrigger value="users">User Management</TabsTrigger>
+          <TabsTrigger value="access-control">Access Control</TabsTrigger>
           <TabsTrigger value="analytics">System Analytics</TabsTrigger>
           <TabsTrigger value="audit">Audit Logs</TabsTrigger>
         </TabsList>
@@ -223,7 +285,6 @@ export default function AdminDashboard() {
                       <TableHead className="font-bold">Role</TableHead>
                       <TableHead className="font-bold">Status</TableHead>
                       <TableHead className="font-bold">Joined</TableHead>
-                      <TableHead className="font-bold">Last Login</TableHead>
                       <TableHead className="font-bold text-right">Actions</TableHead>
                     </TableRow>
                   </TableHeader>
@@ -249,10 +310,7 @@ export default function AdminDashboard() {
                           </Badge>
                         </TableCell>
                         <TableCell className="text-sm text-muted-foreground">
-                          {user.createdAt}
-                        </TableCell>
-                        <TableCell className="text-sm text-muted-foreground">
-                          {user.lastLogin}
+                          {new Date(user.createdAt).toLocaleDateString()}
                         </TableCell>
                         <TableCell className="text-right">
                           <div className="flex justify-end gap-2">
@@ -266,11 +324,39 @@ export default function AdminDashboard() {
                             <Button
                               variant="ghost"
                               size="sm"
-                              onClick={() => handleDeleteUser(user.id)}
-                              className="text-destructive hover:text-destructive"
+                              onClick={() => handlePromoteUser(user.id, user.role)}
                             >
-                              <Trash2 className="h-4 w-4" />
+                              {user.role === "admin" ? "Make User" : "Make Admin"}
                             </Button>
+                            <AlertDialog>
+                              <AlertDialogTrigger asChild>
+                                <Button
+                                  variant="ghost"
+                                  size="sm"
+                                  className="text-destructive hover:text-destructive"
+                                >
+                                  <Trash2 className="h-4 w-4" />
+                                </Button>
+                              </AlertDialogTrigger>
+                              <AlertDialogContent>
+                                <AlertDialogHeader>
+                                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                  <AlertDialogDescription>
+                                    This action cannot be undone. This will permanently delete the user
+                                    account and remove their data from our servers.
+                                  </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                  <AlertDialogAction
+                                    onClick={() => handleDeleteUser(user.id)}
+                                    className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                                  >
+                                    Delete
+                                  </AlertDialogAction>
+                                </AlertDialogFooter>
+                              </AlertDialogContent>
+                            </AlertDialog>
                           </div>
                         </TableCell>
                       </TableRow>
@@ -282,6 +368,107 @@ export default function AdminDashboard() {
               {filteredUsers.length === 0 && (
                 <div className="text-center py-8 text-muted-foreground">
                   No users found matching your search
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="access-control" className="space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Access Control</CardTitle>
+              <CardDescription>Configure granular user permissions and module access.</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="space-y-2">
+                <Label htmlFor="user-select">ROLEMASTERID / USER *</Label>
+                <Select value={selectedUserId || ""} onValueChange={setSelectedUserId}>
+                  <SelectTrigger id="user-select" className="w-full md:w-[300px]">
+                    <SelectValue placeholder="Select a user to configure" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {users.map(user => (
+                      <SelectItem key={user.id} value={user.id}>
+                        {user.fullName || user.email} ({user.role})
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {selectedUserId && localPermissions && (
+                <div className="space-y-8">
+                  {MODULE_CATEGORIES.map(category => (
+                    <div key={category.category} className="space-y-4">
+                      <h3 className="text-lg font-semibold">{category.category}</h3>
+                      <div className="rounded-lg border overflow-hidden">
+                        <Table>
+                          <TableHeader className="bg-muted/30">
+                            <TableRow>
+                              <TableHead className="w-[300px]">Page</TableHead>
+                              <TableHead className="text-center">View</TableHead>
+                              <TableHead className="text-center">Create</TableHead>
+                              <TableHead className="text-center">Edit</TableHead>
+                              <TableHead className="text-center">Delete</TableHead>
+                            </TableRow>
+                          </TableHeader>
+                          <TableBody>
+                            {category.items.map(moduleName => {
+                              const perm = localPermissions.find(p => p.module === moduleName) || {
+                                canView: false,
+                                canCreate: false,
+                                canEdit: false,
+                                canDelete: false
+                              };
+                              return (
+                                <TableRow key={moduleName}>
+                                  <TableCell className="font-medium">{moduleName}</TableCell>
+                                  <TableCell className="text-center">
+                                    <Switch
+                                      checked={perm.canView}
+                                      onCheckedChange={(val) => handlePermissionChange(moduleName, "canView", val)}
+                                    />
+                                  </TableCell>
+                                  <TableCell className="text-center">
+                                    <Switch
+                                      checked={perm.canCreate}
+                                      onCheckedChange={(val) => handlePermissionChange(moduleName, "canCreate", val)}
+                                    />
+                                  </TableCell>
+                                  <TableCell className="text-center">
+                                    <Switch
+                                      checked={perm.canEdit}
+                                      onCheckedChange={(val) => handlePermissionChange(moduleName, "canEdit", val)}
+                                    />
+                                  </TableCell>
+                                  <TableCell className="text-center">
+                                    <Switch
+                                      checked={perm.canDelete}
+                                      onCheckedChange={(val) => handlePermissionChange(moduleName, "canDelete", val)}
+                                    />
+                                  </TableCell>
+                                </TableRow>
+                              );
+                            })}
+                          </TableBody>
+                        </Table>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="flex justify-end gap-3 pt-4 border-t">
+                    <Button variant="outline" onClick={() => setSelectedUserId(null)}>Cancel</Button>
+                    <Button onClick={handleSavePermissions} disabled={updatePermissionsMutation.isPending}>
+                      {updatePermissionsMutation.isPending ? "Saving..." : "Save"}
+                    </Button>
+                  </div>
+                </div>
+              )}
+
+              {!selectedUserId && (
+                <div className="text-center py-12 text-muted-foreground border-2 border-dashed rounded-lg">
+                  Please select a user from the dropdown to configure their permissions
                 </div>
               )}
             </CardContent>

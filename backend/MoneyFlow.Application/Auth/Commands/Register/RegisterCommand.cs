@@ -36,7 +36,15 @@ namespace MoneyFlow.Application.Auth.Commands.Register
                 throw new Exception(string.Join(", ", result.Errors.Select(e => e.Description)));
             }
 
-            var claims = new List<Claim> { new Claim(ClaimTypes.Email, user.Email!) };
+            // Assign default role
+            await _userManager.AddToRoleAsync(user, "user");
+
+            var claims = new List<Claim> 
+            { 
+                new Claim(ClaimTypes.Email, user.Email!),
+                new Claim(ClaimTypes.Role, "user")
+            };
+
             var token = _tokenService.GenerateAccessToken(user, claims);
             var refreshToken = _tokenService.GenerateRefreshToken();
 
@@ -44,7 +52,7 @@ namespace MoneyFlow.Application.Auth.Commands.Register
             user.RefreshTokenExpiryTime = DateTime.UtcNow.AddDays(7);
             await _userManager.UpdateAsync(user);
 
-            return new AuthResponse(token, refreshToken, user.Email!, user.FullName!);
+            return new AuthResponse(token, refreshToken, user.Email!, user.FullName!, "user");
         }
     }
 }

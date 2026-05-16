@@ -37,6 +37,8 @@ namespace MoneyFlow.Infrastructure
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.AddScoped<DatabaseSeeder>();
+
             return services;
         }
     }

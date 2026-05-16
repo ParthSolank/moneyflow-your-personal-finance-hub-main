@@ -17,3 +17,24 @@ C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\mon
 C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.pdb
 C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.genruntimeconfig.cache
 C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\ref\MoneyFlow.Infrastructure.dll
+C:\Users\Parth\Downloads\Compressed\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.sourcelink.json
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Infrastructure.deps.json
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Infrastructure.runtimeconfig.json
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Infrastructure.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Infrastructure.pdb
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Application.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Domain.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Application.pdb
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\bin\Debug\net8.0\MoneyFlow.Domain.pdb
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.csproj.AssemblyReference.cache
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.AssemblyInfoInputs.cache
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.AssemblyInfo.cs
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.csproj.CoreCompileInputs.cache
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.sourcelink.json
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlo.6FC9FC18.Up2Date
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\refint\MoneyFlow.Infrastructure.dll
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.pdb
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\MoneyFlow.Infrastructure.genruntimeconfig.cache
+D:\mony backup latest\moneyflow-your-personal-finance-hub-main\moneyflow-your-personal-finance-hub-main\backend\MoneyFlow.Infrastructure\obj\Debug\net8.0\ref\MoneyFlow.Infrastructure.dll

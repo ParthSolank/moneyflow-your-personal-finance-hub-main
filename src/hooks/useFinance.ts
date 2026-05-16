@@ -3,7 +3,21 @@ import { accountService } from "@/lib/api/accountService";
 import { transactionService, TransactionFilters } from "@/lib/api/transactionService";
 import { budgetService } from "@/lib/api/budgetService";
 import { analyticsService } from "@/lib/api/analyticsService";
+import { userService } from "@/lib/api/userService";
 
+/**
+ * Finance Hooks
+ * 
+ * A collection of custom hooks for interacting with the financial backend.
+ * Uses TanStack Query (React Query) for:
+ * - Efficient data fetching and caching.
+ * - Automatic background refetching.
+ * - Loading and error state management.
+ */
+
+/**
+ * Hook to fetch all user accounts/ledgers.
+ */
 export const useAccounts = () => {
   return useQuery({
     queryKey: ["accounts"],
@@ -139,6 +153,62 @@ export const useDeleteAccount = () => {
       queryClient.invalidateQueries({ queryKey: ["accounts"] });
       queryClient.invalidateQueries({ queryKey: ["dashboard-summary"] });
       queryClient.invalidateQueries({ queryKey: ["transactions"] });
+    },
+  });
+};
+
+export const useUsers = () => {
+  return useQuery({
+    queryKey: ["users"],
+    queryFn: () => userService.getUsers(),
+  });
+};
+
+export const useDeleteUser = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => userService.deleteUser(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+};
+
+export const useToggleUserStatus = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => userService.toggleUserStatus(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+};
+
+export const useChangeUserRole = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, role }: { id: string; role: string }) => userService.changeUserRole(id, role),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["users"] });
+    },
+  });
+};
+
+export const useUserPermissions = (userId: string | null) => {
+  return useQuery({
+    queryKey: ["user-permissions", userId],
+    queryFn: () => (userId ? userService.getUserPermissions(userId) : Promise.resolve([])),
+    enabled: !!userId,
+  });
+};
+
+export const useUpdateUserPermissions = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: ({ id, permissions }: { id: string; permissions: any[] }) =>
+      userService.updateUserPermissions(id, permissions),
+    onSuccess: (_, variables) => {
+      queryClient.invalidateQueries({ queryKey: ["user-permissions", variables.id] });
     },
   });
 };

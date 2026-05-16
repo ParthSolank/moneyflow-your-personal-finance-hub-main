@@ -7,8 +7,17 @@ using MoneyFlow.Application.Common.Models;
 using MoneyFlow.Infrastructure;
 using Serilog;
 using System.Text;
+using dotenv.net;
+using MoneyFlow.Infrastructure.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Load environment variables from .env file
+DotEnv.Load(options: new DotEnvOptions(envFilePaths: new[] { "../../.env" }));
+
+// Override configuration with environment variables
+builder.Configuration["ConnectionStrings:DefaultConnection"] = Environment.GetEnvironmentVariable("DB_CONNECTION_STRING");
+builder.Configuration["JwtSettings:Key"] = Environment.GetEnvironmentVariable("JWT_KEY");
 
 // Configure Serilog
 Log.Logger = new LoggerConfiguration()
@@ -108,6 +117,13 @@ app.MapControllers();
 
 try
 {
+    Log.Information("Seeding database");
+    using (var scope = app.Services.CreateScope())
+    {
+        var seeder = scope.ServiceProvider.GetRequiredService<DatabaseSeeder>();
+        await seeder.SeedAsync();
+    }
+
     Log.Information("Starting web host");
     app.Run();
 }
